@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script
+  src="https://code.jquery.com/jquery-3.7.0.min.js"
+  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+  crossorigin="anonymous"></script>
+    <style>
+        .btn {
+            margin:10px;
+            width: 60%;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container ">
+        <div class="col-lg-8 col-centered form-group" style="text-align:center">
+                <h1 class="text align-self-center p-2">SCALERA MODE</h1>
+                <input type="radio" id="s_singlebreak" name="s_break" class="btn-radio" value="singlebreak"><label style="margin:10xp" for="s_singlebreak" > Single Break</label> <br>
+
+                <h3>Targets</h3>
+                <label for="min">Minimun #</label><input id="min" type="number" class="form-control"><br>
+                <label for="Max">Maximum #</label><input id="max" type="number" class="form-control">
+
+                <h3>Players</h3>
+                <input type="text" class="form-control" id="player1" placeholder="Player 1">
+                <h5>VS</h5>
+                <input type="text" class="form-control" id="player2" placeholder="Player 2">
+                <input type="button" class="btn btn-primary form-control" id="Proceed" value="Proceed">
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+    $('#Proceed').click(()=>{
+        let s_mode = $('input[name="s_break"]:checked').val();
+        let s_min = $('#min').val()
+        let s_max = $('#max').val()
+        let player1 = $('#player1').val()
+        let player2 = $('#player2').val()
+
+        let data = {
+                    s_mode: s_mode, 
+                    s_min: s_min, 
+                    s_max: s_max, 
+                    player1: player1, 
+                    player2: player2
+                    }
+
+        console.log(data)
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST","add",true);
+        xhr.setRequestHeader("Content-Type","application/json");
+        xhr.send(data);
+
+    })
+</script>
